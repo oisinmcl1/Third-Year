@@ -1,16 +1,37 @@
+/*
+Oisin Mc Laughlin
+22441106
+ */
+
 public class HealthPractice {
-    private String name;
-    private String address;
+    private String healthName;
+    private String healthAddress;
 
-    public HealthPractice(String name, String address) {
-        this.name = name;
-        this.address = address;
+    public HealthPractice(String healthName, String healthAddress) {
+        this.healthName = healthName;
+        this.healthAddress = healthAddress;
     }
 
-    public String getName() {
-        return name;
+    // Getters
+    public String getHealthPracticeName() {
+        return healthName;
     }
-    public String getAddress() {
-        return address;
+    public String getHealthPracticeAddress() {
+        return healthAddress;
     }
+
+    // Setters
+    public void setHealthPracticeName (String healthName) {
+        this.healthName = healthName;
+    }
+
+    public void setHealthPracticeAddress(String healthAddress) {
+        this.healthAddress = healthAddress;
+    }
+
+    // ToString
+    /*@Override
+    public String toString() {
+        return "Health Practice: " + healthName + " at " + healthAddress;
+    }*/
 }

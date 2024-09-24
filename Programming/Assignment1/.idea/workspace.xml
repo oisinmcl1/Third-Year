@@ -5,9 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f9dc9ee0-dcf0-4894-af42-186f1cd0f6f3" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/HealthPractice.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Booking.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Booking.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/HealthPractice.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/HealthPractice.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tests/BookingTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/tests/BookingTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -25,9 +25,9 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 0
-}]]></component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 0
+}</component>
   <component name="ProjectId" id="2mRDWApQEAaZDPU2bzWxRhDYd9k" />
   <component name="ProjectLevelVcsManager">
     <ConfirmationsSetting value="2" id="Add" />
@@ -41,6 +41,9 @@
     "Application.Main.executor": "Run",
     "Downloaded.Files.Path.Enabled": "true",
     "JUnit.All in Assignment1.executor": "Run",
+    "JUnit.BookingTest.executor": "Run",
+    "JUnit.BookingTest.testBookingCreate.executor": "Run",
+    "JUnit.BookingTest.testConstructors.executor": "Run",
     "JUnit.BookingTest.testInitValues.executor": "Run",
     "JUnit.BookingTest.testObject.executor": "Run",
     "Repository.Attach.Annotations": "false",
@@ -57,7 +60,7 @@
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
-  <component name="RunManager" selected="JUnit.BookingTest.testObject">
+  <component name="RunManager" selected="JUnit.BookingTest">
     <configuration name="All in Assignment1" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="Assignment1" />
       <option name="PACKAGE_NAME" value="" />
@@ -66,11 +69,30 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="BookingTest.testInitValues" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="BookingTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="Assignment1" />
       <option name="PACKAGE_NAME" value="" />
       <option name="MAIN_CLASS_NAME" value="BookingTest" />
-      <option name="METHOD_NAME" value="testInitValues" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="BookingTest.testBookingCreate" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="Assignment1" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="BookingTest" />
+      <option name="METHOD_NAME" value="testBookingCreate" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="BookingTest.testConstructors" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="Assignment1" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="BookingTest" />
+      <option name="METHOD_NAME" value="testConstructors" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -88,9 +110,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.BookingTest.testObject" />
+        <item itemvalue="JUnit.BookingTest" />
+        <item itemvalue="JUnit.BookingTest.testBookingCreate" />
+        <item itemvalue="JUnit.BookingTest.testConstructors" />
         <item itemvalue="JUnit.All in Assignment1" />
-        <item itemvalue="JUnit.BookingTest.testInitValues" />
+        <item itemvalue="JUnit.BookingTest.testObject" />
       </list>
     </recent_temporary>
   </component>
@@ -110,7 +134,8 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1727030526657</updated>
-      <workItem from="1727030527806" duration="6395000" />
+      <workItem from="1727030527806" duration="8431000" />
+      <workItem from="1727173828809" duration="4692000" />
     </task>
     <servers />
   </component>
