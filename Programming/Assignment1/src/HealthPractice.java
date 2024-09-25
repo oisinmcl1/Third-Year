@@ -24,14 +24,7 @@ public class HealthPractice {
     public void setHealthPracticeName (String healthName) {
         this.healthName = healthName;
     }
-
     public void setHealthPracticeAddress(String healthAddress) {
         this.healthAddress = healthAddress;
     }
-
-    // ToString
-    /*@Override
-    public String toString() {
-        return "Health Practice: " + healthName + " at " + healthAddress;
-    }*/
 }
