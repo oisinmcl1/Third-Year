@@ -5,13 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f9dc9ee0-dcf0-4894-af42-186f1cd0f6f3" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/HealthPracticeAppointmentWebservice.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/exceptions/InvalidDateException.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Booking.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Booking.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/HealthPractice.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/HealthPractice.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/BookingTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/tests/BookingTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -157,7 +151,7 @@
       <option name="presentableId" value="Default" />
       <updated>1727030526657</updated>
       <workItem from="1727030527806" duration="8431000" />
-      <workItem from="1727173828809" duration="14682000" />
+      <workItem from="1727173828809" duration="14774000" />
     </task>
     <servers />
   </component>
