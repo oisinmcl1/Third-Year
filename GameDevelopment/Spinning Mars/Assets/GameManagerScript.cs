@@ -4,12 +4,13 @@ using System.Numerics;
 using UnityEngine;
 using Vector3 = UnityEngine.Vector3;
 
-public class GameManagerScript : MonoBehaviour
-{
+public class GameManagerScript : MonoBehaviour {
 	// Create GameObjects for mars, phobos, and deimos
 	public GameObject mars;
 	public GameObject phobos;
 	public GameObject deimos;
+	public GameObject asteroid;
+	public int total = 0;
 
     // Start is called before the first frame update
     void Start() {
@@ -47,5 +48,13 @@ public class GameManagerScript : MonoBehaviour
 
 	    // Ensure camera still looks at mars after rotating
 	    // Camera.main.transform.LookAt(mars.transform);
+	    
+	    
+	    // Spawn Asteroids randomly, 0.2% chance of spawning per frame
+	    if (Random.Range(0f, 100f) < 0.2f) {
+		    Instantiate(asteroid);
+		    total++;
+		    Debug.Log("Asteroid Spawned!\nToal Asteroids: " + total);
+	    }
     }
 }
