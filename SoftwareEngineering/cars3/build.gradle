@@ -28,7 +28,7 @@ dependencies {
 	runtimeOnly 'org.mariadb.jdbc:mariadb-java-client'
 	
 	implementation 'org.springframework.boot:spring-boot-starter-data-rest'
-	
+
 	implementation group: 'org.springdoc', name: 'springdoc-openapi-starter-webmvc-ui', version: '2.0.2'
 }
 
