@@ -1,0 +1,52 @@
+# Ignore meta files from the Assets folder and build artifacts.
+[Ll]ibrary/
+[Tt]emp/
+[Oo]bj/
+[Bb]uild/
+[Bb]uilds/
+[Ll]ogs/
+[Mm]emoryCaptures/
+*.pidb
+*.pdb
+*.opendb
+*.VC.db
+
+# Ignore auto-generated Visual Studio files.
+*.csproj
+*.unityproj
+*.sln
+*.suo
+*.user
+*.userprefs
+*.pidb.meta
+*.pdb.meta
+*.unityproj.meta
+*.sln.meta
+
+# Ignore Rider project files
+.idea/
+*.sln.iml
+
+# Ignore build folders
+Build/
+Builds/
+
+# Ignore asset meta data
+*.meta
+
+# Ignore crash logs and debug files
+sysinfo.txt
+Player.log
+CrashReports/
+
+# Ignore Packages folder
+Packages/manifest.json
+Packages/packages-lock.json
+
+# Ignore auto-generated Unity files
+.vscode/
+
+# Ignore specific file types
+*.log
+*.swp
+*.tmp
