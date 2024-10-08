@@ -7,8 +7,10 @@
     <list default="true" id="48b5cd09-f0aa-411f-8375-3aeaf348e7b4" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Category.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Category.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Expense.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Expense.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/ExpenseTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/tests/ExpenseTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ExpensePrinter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ExpensePrinter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ExpensesPortal.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ExpensesPortal.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/CategoryTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/tests/CategoryTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/ExpensesPortalTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/tests/ExpensesPortalTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -102,7 +104,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1728401634463</updated>
-      <workItem from="1728401638027" duration="2863000" />
+      <workItem from="1728401638027" duration="5175000" />
     </task>
     <servers />
   </component>
