@@ -1,2 +1,7 @@
 public enum Category {
+    TRAVEL_AND_SUBSISTENCE,
+    SUPPLIES,
+    ENTERTAINMENT,
+    EQUIPMENT,
+    OTHER
 }
