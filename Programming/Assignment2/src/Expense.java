@@ -6,7 +6,17 @@ Oisin Mc Laughlin
 22441106
  */
 
+/**
+ * Represents an expense claim made by an employee
+ * An expense has a date, description, category, amount and approval status
+ *
+ * @author Oisin Mc Laughlin
+ */
+
 public class Expense {
+    /**
+     * The date of the expense
+     */
     private LocalDate expenseDate;
     private String expenseDescription;
     private Category expenseCategory;

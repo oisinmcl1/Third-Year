@@ -6,5 +6,5 @@ Oisin Mc Laughlin
  */
 
 public interface ExpensePrinter {
-    void printExpense(List<Expense> expenses);
+    public void printExpenses(List<Expense> expenses);
 }
