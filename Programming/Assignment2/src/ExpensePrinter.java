@@ -1,10 +1,13 @@
 import java.util.List;
 
-/*
-Oisin Mc Laughlin
-22441106
+/**
+ * @author Oisin Mc Laughlin
+ * 22441106
  */
 
+/**
+ * Interface for printing expenses
+ */
 public interface ExpensePrinter {
     public void printExpenses(List<Expense> expenses);
 }

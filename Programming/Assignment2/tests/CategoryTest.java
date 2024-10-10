@@ -1,11 +1,15 @@
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
-/*
-Oisin Mc Laughlin
-22441106
+/**
+ * @author Oisin Mc Laughlin
+ * 22441106
  */
 
+/**
+ * Tests for the Category class
+ * Just ensures that the categories are correct, it's not really needed but it's here for completeness and to practice TDD
+ */
 public class CategoryTest {
     @Test
     void testExpenseCategories() {

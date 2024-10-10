@@ -4,9 +4,9 @@ import java.time.LocalDate;
 import static org.junit.jupiter.api.Assertions.*;
 import org.joda.money.Money;
 
-/*
-Oisin Mc Laughlin
-22441106
+/**
+ * @author Oisin Mc Laughlin
+ * 22441106
  */
 
 public class ExpenseTest {
@@ -16,7 +16,9 @@ public class ExpenseTest {
         assertNotNull(ex);
     }*/
 
-    // Getters and setters for Date in Expense class
+    /**
+     * Getters and Setters for Date in Expense class
+     */
     @Test
     void testExpenseGetDate() {
         Expense ex = new Expense(LocalDate.of(2022, 8, 12), null, null, null);
@@ -38,7 +40,9 @@ public class ExpenseTest {
         assertEquals(LocalDate.of(2022, 8, 12), ex.getExpenseDate());
     }
 
-    // Getters and Setters for Description in Expense class
+    /**
+     * Getters and Setters for Description in Expense class
+     */
     @Test
     void testExpenseGetDescription() {
         Expense ex = new Expense(null, "Test Description", null, null);
@@ -60,7 +64,9 @@ public class ExpenseTest {
         assertEquals("Test Description", ex.getExpenseDescription());
     }
 
-    // Getters and Setters for Category in Expense class
+    /**
+     * Getters and Setters for approved bool in Expense class
+     */
     @Test
     void testExpenseApprovedDefault() {
         Expense ex = new Expense(null, null, null, null);
@@ -83,6 +89,9 @@ public class ExpenseTest {
         assertTrue(ex.getExpenseApproved());
     }
 
+    /**
+     * Check that the category is correct
+     */
     @Test
     void testExpenseGetCategory() {
         Expense ex = new Expense(null, null, Category.EQUIPMENT, null);
@@ -91,6 +100,9 @@ public class ExpenseTest {
         assertEquals(Category.EQUIPMENT, ex.getExpenseCategory());
     }
 
+    /**
+     * Test that amount is set correctly
+     */
     @Test
     void testExpenseAmount() {
         Expense ex = new Expense(null, null, null, Money.of(CurrencyUnit.EUR, 420.00));
@@ -99,7 +111,9 @@ public class ExpenseTest {
         assertEquals(Money.of(CurrencyUnit.EUR, 420.00), ex.getExpenseAmount());
     }
 
-    // Testing toString in Expense class
+    /**
+     * Test that toString is correctr
+     */
     @Test
     void testToString () {
         /*

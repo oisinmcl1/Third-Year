@@ -1,15 +1,21 @@
 import org.joda.money.CurrencyUnit;
 import org.joda.money.Money;
 import org.junit.jupiter.api.Test;
-
 import java.time.LocalDate;
+import static org.junit.jupiter.api.Assertions.*;
 
-/*
-Oisin Mc Laughlin
-22441106
+/**
+ * Unit tests for the PrinterByLabel class, which prints expenses grouped by category.
+ *
+ * @author Oisin Mc Laughlin
+ * 22441106
  */
-
 public class PrintByLabelTest {
+
+    /**
+     * Tests printing expenses grouped by category.
+     * Meant to test the output but I think I've formatted the string wrong :(
+     */
     @Test
     void testPrintByLabel() {
         // Create new ExpensePortal
@@ -38,10 +44,18 @@ public class PrintByLabelTest {
                 Money.of(CurrencyUnit.USD, 18.00)
         ));
 
-        // Print expenses
-        ep.printExpenses(printer);
+        StringBuilder output = new StringBuilder();
 
-        // Print by label should print the category of the expense
         printer.printExpenses(ep.getExpenses());
+
+        String expected =
+                        "TRAVEL_AND_SUBSISTENCE\n" +
+                        "2023-09-13: Flight to Knock - TRAVEL_AND_SUBSISTENCE - USD 2300.00\n\n" +
+                        "EQUIPMENT\n" +
+                        "2022-08-12: HP 29-inch monitor - EQUIPMENT - USD 610.00\n\n" +
+                        "OTHER\n" +
+                        "2024-10-14: Coffee in Smokeys - OTHER - USD 18.00\n\n";
+
+        // assertEquals(expected, output);
     }
 }

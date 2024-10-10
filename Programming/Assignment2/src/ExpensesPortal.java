@@ -1,55 +1,68 @@
 import exceptions.InvalidExpenseAmount;
 import org.joda.money.CurrencyUnit;
 import org.joda.money.Money;
-
 import java.math.BigDecimal;
-import java.math.BigInteger;
 import java.math.RoundingMode;
 import java.util.List;
 import java.util.ArrayList;
 
-import static java.math.BigDecimal.valueOf;
-
-/*
-Oisin Mc Laughlin
-22441106
+/**
+ * Manages a list of employee expenses. This class allows adding expenses, printing them,
+ * and summing their values (with support for multi-currency conversion).
+ *
+ * @author Oisin Mc Laughlin
+ * 22441106
  */
-
 public class ExpensesPortal {
+
+    /**
+     * A list of expenses in the system.
+     */
     private List<Expense> expenses = new ArrayList<>();
 
-    // Method to add expense to list
+    /**
+     * Adds a new expense to the portal. This method validates that the expense amount is positive.
+     *
+     * @param expense The expense to be added
+     * @throws InvalidExpenseAmount if the expense amount is negative or zero
+     */
     public void addExpense(Expense expense) {
-        // Throw exception if expense amount is negative
         if (expense.getExpenseAmount().isNegativeOrZero()) {
-            throw new InvalidExpenseAmount("Expense amount must be positive");
+            throw new InvalidExpenseAmount("Expense amount must be positive.");
         }
         expenses.add(expense);
     }
 
-    // Method to print expenses
+    /**
+     * Prints the expenses using a provided ExpensePrinter.
+     *
+     * @param printer The printer implementation that defines how expenses are printed
+     */
     public void printExpenses(ExpensePrinter printer) {
         printer.printExpenses(expenses);
     }
 
-    // Method to get expenses (mostly for testing)
+    /**
+     * Gets the list of expenses.
+     *
+     * @return A list of all expenses
+     */
     public List<Expense> getExpenses() {
         return expenses;
     }
 
-    // Method to sum expenses and convert USD to EUR when necessary
+    /**
+     * Sums the expenses and converts USD to EUR when necessary.
+     *
+     * @return The total sum of the expenses in EUR
+     */
     public Money sumExpenses() {
         Money total = Money.zero(CurrencyUnit.EUR);
-
         for (Expense ex : expenses) {
             Money amt = ex.getExpenseAmount();
-
-            // If currency USD, convert to EUR with exchange rate of 0.85 and round
             if (amt.getCurrencyUnit().equals(CurrencyUnit.USD)) {
                 amt = amt.convertedTo(CurrencyUnit.EUR, BigDecimal.valueOf(0.89), RoundingMode.HALF_UP);
             }
-
-            // Add amount (in EUR) to total
             total = total.plus(amt);
         }
         return total;

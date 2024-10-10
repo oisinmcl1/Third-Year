@@ -6,10 +6,16 @@
   <component name="ChangeListManager">
     <list default="true" id="48b5cd09-f0aa-411f-8375-3aeaf348e7b4" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Category.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Category.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Expense.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Expense.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/ExpensePrinter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ExpensePrinter.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/ExpensesPortal.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ExpensesPortal.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/PrinterByLabel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/PrinterByLabel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/exceptions/InvalidExpenseAmount.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/exceptions/InvalidExpenseAmount.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/CategoryTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/tests/CategoryTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/ExpenseTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/tests/ExpenseTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tests/ExpensesPortalTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/tests/ExpensesPortalTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/PrintByLabelTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/tests/PrintByLabelTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -43,6 +49,7 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "Downloaded.Files.Path.Enabled": "false",
+    "JUnit.All in Assignment2.executor": "Run",
     "JUnit.CategoryTest.executor": "Run",
     "JUnit.ExpenseTest.executor": "Run",
     "JUnit.ExpensesPortalTest.executor": "Run",
@@ -66,12 +73,11 @@
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
-  <component name="RunManager" selected="JUnit.PrintByLabelTest">
-    <configuration name="CategoryTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="JUnit.All in Assignment2">
+    <configuration name="All in Assignment2" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="Assignment2" />
       <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="CategoryTest" />
-      <option name="TEST_OBJECT" value="class" />
+      <option name="TEST_OBJECT" value="package" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -115,11 +121,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.PrintByLabelTest" />
+        <item itemvalue="JUnit.All in Assignment2" />
         <item itemvalue="JUnit.ExpensesPortalTest" />
-        <item itemvalue="JUnit.ExpensesPortalTest.testAddExpenses" />
         <item itemvalue="JUnit.ExpenseTest" />
-        <item itemvalue="JUnit.CategoryTest" />
+        <item itemvalue="JUnit.PrintByLabelTest" />
+        <item itemvalue="JUnit.ExpensesPortalTest.testAddExpenses" />
       </list>
     </recent_temporary>
   </component>
@@ -139,7 +145,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1728401634463</updated>
-      <workItem from="1728401638027" duration="16965000" />
+      <workItem from="1728401638027" duration="21640000" />
     </task>
     <servers />
   </component>

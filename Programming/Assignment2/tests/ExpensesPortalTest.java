@@ -5,18 +5,24 @@ import java.time.LocalDate;
 import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
 
-/*
-Oisin Mc Laughlin
-22441106
+/**
+ * Unit tests for the ExpensesPortal class.
+ * Tests adding expenses, printing, and summing expenses.
+ *
+ * @author Oisin Mc Laughlin
+ * 22441106
  */
-
 public class ExpensesPortalTest {
 
+    /**
+     * Test adding expenses to the ExpensesPortal.
+     * Uses lambda expression to print expenses that were added.
+     * Tests correct number of expenses added and correct output.
+     */
     @Test
     void testAddExpensesLambda() {
         ExpensesPortal ep = new ExpensesPortal();
 
-        // Add some expenses
         ep.addExpense(new Expense(
                 LocalDate.of(2022, 8, 12),
                 "HP 29-inch monitor",
@@ -36,7 +42,6 @@ public class ExpensesPortalTest {
                 Money.of(CurrencyUnit.EUR, 18.00)
         ));
 
-        // Use lambda expression to print expenses that were added
         // String output = "";
         StringBuilder sb = new StringBuilder();
 
@@ -48,7 +53,6 @@ public class ExpensesPortalTest {
             }
         });
 
-        // Test correct number of expensees added and correct output
         assertEquals(3, ep.getExpenses().size());
         // assertEquals(expected, output);
         String expected = "" +
@@ -59,11 +63,31 @@ public class ExpensesPortalTest {
         assertEquals(expected, sb.toString());
     }
 
+
+    /*@Test
+    void testNegativeExpense() {
+        ExpensesPortal ep = new ExpensesPortal();
+
+
+        ep.addExpense(new Expense(
+                LocalDate.of(2022, 8, 12),
+                "HP 29-inch monitor",
+                Category.EQUIPMENT,
+                Money.of(CurrencyUnit.EUR, -100.00)
+        ));
+
+        assertThrows(InvalidExpenseAmount.class);
+    }*/
+
+    /**
+     * Test summing expenses in the ExpensesPortal.
+     * Uses anonymous inner class to print expenses that were added.
+     * Tests correct number of expenses added and correct output.
+     */
     @Test
     void testSumExpensesInnerClass() {
         ExpensesPortal ep = new ExpensesPortal();
 
-        // Add some expenses
         ep.addExpense(new Expense(
                 LocalDate.of(2022, 8, 12),
                 "HP 29-inch monitor",
@@ -85,7 +109,6 @@ public class ExpensesPortalTest {
 
         StringBuilder sb = new StringBuilder();
 
-        // Use anonymous inner class to print expenses that were added
         ep.printExpenses(new ExpensePrinter() {
             @Override
             public void printExpenses(List<Expense> expenses) {
@@ -97,7 +120,6 @@ public class ExpensesPortalTest {
         });
         String expected = "There are 3 expenses in the system totaling EUR EUR 2605.92\n";
 
-        // Test correct number of expenses added and correct output
         assertEquals(expected, sb.toString());
     }
 }
