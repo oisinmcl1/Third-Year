@@ -7,6 +7,7 @@ public class GameManager : MonoBehaviour {
 	
 	// inspector settings
 	public GameObject asteroidPrefab;
+	public GameObject spaceship;
 
 	// class-level statics
 	public static GameManager instance;
@@ -22,6 +23,7 @@ public class GameManager : MonoBehaviour {
 		Camera.main.transform.LookAt (Vector3.zero, new Vector3 (0f, 0f, 1f));
 		currentGameLevel = 0;
 
+		CreatePlayerSpaceship();
 		StartNextLevel ();
 	}
 
@@ -53,5 +55,13 @@ public class GameManager : MonoBehaviour {
 				z = screenTopRight.z - Random.Range (0f, 0.15f) * screenHeight; // near the top edge
 			go.transform.position = new Vector3(x, 0f, z);
 		}
+	}
+	
+	// Method to create a spaceship!!!
+	public void CreatePlayerSpaceship()
+	{
+		// Create a spaceship at the origin
+		Instantiate(spaceship, new Vector3(0, 0, 0), Quaternion.identity);
+		Debug.Log("Spaceship created at " + spaceship.transform.position);
 	}
 }
