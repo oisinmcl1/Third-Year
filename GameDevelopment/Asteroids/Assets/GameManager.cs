@@ -2,74 +2,56 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GameManager : MonoBehaviour
-{
-    private int currentGameLevel;
-    public GameObject asteroid;
-    // public int totalAsteroids = 0;
-    
-    // Start is called before the first frame update
-    void Start()
-    {
-        // Set camera position to look down on the game
-        Camera.main.transform.position = new Vector3(0, 30, 0);
-        Camera.main.transform.LookAt(new Vector3(0, 0, 0), Vector3.forward);
-        
-        // Initialize game level
-        currentGameLevel = 1;
-        StartNextLevel();
-    }
+public class GameManager : MonoBehaviour {
+	// Lab 4 solution starter code
+	
+	// inspector settings
+	public GameObject asteroidPrefab;
 
-    // Update is called once per frame
-    void Update()
-    {
-        /*
-         if (Random.Range(0f, 100f) < 0.2f) {
-            StartNextLevel();
-            currentGameLevel++;
-        }
-        */
-    }
+	// class-level statics
+	public static GameManager instance;
+	public static int currentGameLevel;
+	public static Vector3 screenBottomLeft, screenTopRight;
+	public static float screenWidth, screenHeight;
+	//
 
-    void StartNextLevel()
-    {
-        // Get the screen bounds using the main camera
-        Vector3 bottomLeft = Camera.main.ViewportToWorldPoint(new Vector3(0, 0, Camera.main.transform.position.y));
-        Vector3 topRight = Camera.main.ViewportToWorldPoint(new Vector3(1, 1, Camera.main.transform.position.y));
-        
-        // Number of asteroid spawns doubles each level
-        for (int i = 0; i < currentGameLevel * 2; i++)
-        {
-            // Randomize asteroid spawn position
-            // Vector3 spawnPos = new Vector3(Random.Range(-15, 15), 0, Random.Range(-15, 15));
-            Vector3 spawnPos = Vector3.zero;
-            int edge = Random.Range(0, 4);
+	// Use this for initialization
+	void Start () {
+		instance = this;
+		Camera.main.transform.position = new Vector3 (0f, 30f, 0f);
+		Camera.main.transform.LookAt (Vector3.zero, new Vector3 (0f, 0f, 1f));
+		currentGameLevel = 0;
 
-            // Bottom edge
-            if (edge == 0) {
-                // Randomize x between left and right edges and set z to bottom edge
-                spawnPos = new Vector3(Random.Range(bottomLeft.x, topRight.x), 0, bottomLeft.z);
-            }
-            // Top edge
-            else if (edge == 1) {
-                // Randomize x between left and right edges and set z to top edge
-                spawnPos = new Vector3(Random.Range(bottomLeft.x, topRight.x), 0, topRight.z);
-            }
-            // Left edge
-            else if (edge == 2) {
-                // Randomize z between bottom and top edges and set x to left edge
-                spawnPos = new Vector3(bottomLeft.x, 0, Random.Range(bottomLeft.z, topRight.z));
-            }
-            // Right edge
-            else if (edge == 3) {
-                // Randomize z between bottom and top edges and set x to right edge
-                spawnPos = new Vector3(topRight.x, 0, Random.Range(bottomLeft.z, topRight.z));
-            }
-            
-            // Instantiate asteroid at spawn position with no rotation
-            Instantiate(asteroid, spawnPos, Quaternion.identity);
-            // totalAsteroids++;
-            // Debug.Log("Asteroid Spawned!\nToal Asteroids: " + totalAsteroids);
-        }
-    }
+		StartNextLevel ();
+	}
+
+	public static void StartNextLevel() {
+		currentGameLevel++;
+
+		// find screen corners and size, in world coordinates
+		// for ViewportToWorldPoint, the z value specified is in world units from the camera
+		screenBottomLeft = Camera.main.ViewportToWorldPoint(new Vector3(0f,0f,30f));
+		screenTopRight = Camera.main.ViewportToWorldPoint (new Vector3(1f,1f,30f));
+		screenWidth = screenTopRight.x - screenBottomLeft.x;
+		screenHeight = screenTopRight.z - screenBottomLeft.z;
+		Debug.Log ("BottomLeft: "+screenBottomLeft);
+		Debug.Log ("TopRight: "+screenTopRight);
+		Debug.Log ("Width: " + screenWidth);
+		Debug.Log ("Height: " + screenHeight);
+
+		// create some asteroids near the edges of the screen
+		for (int i = 0; i < currentGameLevel * 2 + 6; i++) {
+			GameObject go = Instantiate (instance.asteroidPrefab) as GameObject;
+			float x, z;
+			if (Random.Range (0f, 1f) < 0.5f)
+				x = screenBottomLeft.x + Random.Range (0f, 0.15f) * screenWidth; // near the left edge
+			else
+				x = screenTopRight.x - Random.Range (0f, 0.15f) * screenWidth; // near the right edge
+			if (Random.Range (0f, 1f) < 0.5f)
+				z = screenBottomLeft.z + Random.Range (0f, 0.15f) * screenHeight; // near the bottom edge
+			else
+				z = screenTopRight.z - Random.Range (0f, 0.15f) * screenHeight; // near the top edge
+			go.transform.position = new Vector3(x, 0f, z);
+		}
+	}
 }

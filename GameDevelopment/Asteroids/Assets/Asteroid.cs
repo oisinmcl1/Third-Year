@@ -2,64 +2,43 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class NewBehaviourScript : MonoBehaviour
-{
-    private Vector3 screenBounds;
+public class Asteroid : MonoBehaviour {
+    // Lab 4 solution starter code
     
-    // Start is called before the first frame update
-    void Start()
-    {
-        // Generate random direction for asteroid
-        Vector3 randDir = new Vector3(Random.Range(-1f, 1f), 0, Random.Range(-1f, 1f));
+    // inspector settings
+    public Rigidbody rigidBody;
+    //
 
-        // Normalize so asteroid moves constant direction
-        randDir.Normalize();
-        
-        // Randomize asteroid velocity
-        float randVel = Random.Range(1f, 3f);
-        
-        // Set asteroid velocity
-        GetComponent<Rigidbody>().AddForce(randDir * randVel, ForceMode.Impulse);
-        
-        // Calculate screenbounds from where camera is looking
-        screenBounds = Camera.main.ViewportToWorldPoint(new Vector3(1, 1, Camera.main.transform.position.y));
-    }
-    
-    private float timeAccumulator = 0;
-    
-    // Update is called once per frame
-    void Update()
-    {
-        // Add time passed since last frame
-        timeAccumulator += Time.deltaTime;
-        
-        // If 0.2 seconds have passed, call CheckBounds (in theory this is 5 times a second)
-        if (timeAccumulator >= 0.2f) {
-            CheckBounds();
-            timeAccumulator = 0;
-        }
-    }
+    // Use this for initialization
+    void Start () {
+        // randomise size+mass
+        transform.localScale = new Vector3(Random.Range(0.06f,0.09f), Random.Range(0.06f,0.09f), Random.Range(0.06f,0.09f));
+        rigidBody.mass = transform.localScale.x * transform.localScale.y * transform.localScale.z;
 
-    void CheckBounds()
-    {
-        Vector3 pos = transform.position;
-        
-        // Wrap asteroid around screen if it goes out of bounds
-        if (pos.x > screenBounds.x) {
-            pos.x = -screenBounds.x;
-        }
-        else if (pos.x < -screenBounds.x) {
-            pos.x = screenBounds.x;
-        }
-        
-        if (pos.z > screenBounds.z) {
-            pos.z = -screenBounds.z;
-        }
-        else if (pos.z < -screenBounds.z) {
-            pos.z = screenBounds.z;
-        }
-        
-        // Set new position of the wrapped asteroid
-        transform.position = pos;
+        // randomise velocity
+        rigidBody.velocity = new Vector3 (Random.Range (-10f, 10f), 0f, Random.Range (-10f, 10f));
+        rigidBody.angularVelocity = new Vector3 (Random.Range (-4f, 4f), Random.Range (-4f, 4f), Random.Range (-4f, 4f));
+	
+        // start periodically checking for being off-screen
+        InvokeRepeating ("CheckScreenEdges", 0.2f, 0.2f);
+    }
+	
+    private void CheckScreenEdges() {
+        Vector3 pos = transform.position; 
+        Vector3 vel = rigidBody.velocity; 
+        float xTeleport = 0f, zTeleport = 0f;
+
+        if (pos.x < GameManager.screenBottomLeft.x && vel.x <= 0f)  // velocity check as sanity test
+            xTeleport = GameManager.screenWidth;
+        else if (pos.x > GameManager.screenTopRight.x && vel.x >= 0f)
+            xTeleport = -GameManager.screenWidth;
+
+        if (pos.z < GameManager.screenBottomLeft.z && vel.z <= 0f)
+            zTeleport = GameManager.screenHeight;
+        else if (pos.z > GameManager.screenTopRight.z && vel.z >= 0f)
+            zTeleport = -GameManager.screenHeight;
+
+        if (xTeleport != 0f || zTeleport != 0f)
+            transform.position = new Vector3 (pos.x + xTeleport, 0f, pos.z + zTeleport);
     }
 }
