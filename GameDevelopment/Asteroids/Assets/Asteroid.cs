@@ -6,6 +6,7 @@ public class Asteroid : MonoBehaviour
 // Lab 5 starter code
 {
     public Rigidbody rigidBody;
+    public bool largeAsteroid;
     
     void Start()
     {
@@ -15,6 +16,8 @@ public class Asteroid : MonoBehaviour
         // randomise velocity
         rigidBody.velocity = new Vector3(Random.Range(-10f, 10f), 0f, Random.Range(-10f, 10f));
         rigidBody.angularVelocity = new Vector3(Random.Range(-4f, 4f), Random.Range(-4f, 4f), Random.Range(-4f, 4f));
+
+        largeAsteroid = true;
     }
 
     
@@ -31,6 +34,52 @@ public class Asteroid : MonoBehaviour
             Rigidbody r = go.GetComponent<Rigidbody>();
             r.velocity = new Vector3 (Random.Range (-colSpeed, colSpeed), 0f, Random.Range (-colSpeed, colSpeed));
             r.angularVelocity = new Vector3 (Random.Range (-4f, 4f), Random.Range (-4f, 4f), Random.Range (-4f, 4f)); 
+        }
+        
+        // Add collision detection for spaceship
+        if (collision.gameObject.CompareTag("Spaceship"))
+        {
+            // Destroy asteroid and respawn spaceship in gamemanager
+            Debug.Log("Spaceship hit asteroid");
+            Destroy(collision.gameObject);
+            GameManager.instance.CreatePlayerSpaceship();
+            Destroy(gameObject);
+        }
+    }
+
+    // Since bullet is a trigger, need to use OnTriggerEnter
+    void OnTriggerEnter(Collider other)
+    {
+        // Add collision detection for bullet
+        if (other.gameObject.CompareTag("Bullet"))
+        {
+            // Destroy bullet and asteroid
+            Debug.Log("Bullet hit asteroid");
+            Destroy(other.gameObject);
+            Destroy(gameObject);
+            
+            // If large asteroid, spawn small asteroid prefabs
+            if (largeAsteroid)
+            {
+                smallAsteroidsSpawn();
+            }
+        }
+    }
+
+    void smallAsteroidsSpawn()
+    {
+        // Small asteroid prefabs spawn
+        for (int i = 0; i < 2; i++)
+        {
+            // Instantiate small asteroid and scale it down by half
+            GameObject smallAsteroid = Instantiate(gameObject, transform.position + new Vector3((Random.Range(1,3)), 0, (Random.Range(1, 3))), transform.rotation);
+            smallAsteroid.transform.localScale = transform.localScale / 2;
+            
+            // Set largeAsteroid bool to false
+            smallAsteroid.GetComponent<Asteroid>().largeAsteroid = false;
+            
+            // Add velocity to small asteroid in random direction
+            smallAsteroid.GetComponent<Rigidbody>().velocity = new Vector3(Random.Range(-10f, 10f), 0f, Random.Range(-10f, 10f));
         }
     }
 }

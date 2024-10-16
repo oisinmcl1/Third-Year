@@ -67,7 +67,7 @@ public class GameManager : MonoBehaviour
             go.transform.position = new Vector3(x, 0f, z);
         }
     }
-    private static void CreatePlayerSpaceship()
+    public void CreatePlayerSpaceship()
     {
         GameObject go = Instantiate(instance.spaceshipPrefab);
         go.transform.position = Vector3.zero;
