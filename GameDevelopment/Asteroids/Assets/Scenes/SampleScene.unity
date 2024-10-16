@@ -302,7 +302,7 @@ Transform:
   m_GameObject: {fileID: 963194225}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: -10}
+  m_LocalPosition: {x: 0, y: 30, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -338,7 +338,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   asteroidPrefab: {fileID: 8570460978522251206, guid: eebea3b394ec740f9b72e2eed2dd586c, type: 3}
-  spaceship: {fileID: 4415773886523127552, guid: aeba79235c33d403c87210c1b1feff6d, type: 3}
+  spaceshipPrefab: {fileID: 4415773886523127552, guid: aeba79235c33d403c87210c1b1feff6d, type: 3}
+  fragmentPrefab: {fileID: 3083111004831871583, guid: abca302bba1944c6ab436b3b163060e6, type: 3}
 --- !u!4 &1962438084
 Transform:
   m_ObjectHideFlags: 0

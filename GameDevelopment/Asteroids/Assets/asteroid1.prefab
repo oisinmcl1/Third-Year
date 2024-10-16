@@ -10,15 +10,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: d67c6fe4b38ad44adb7fad6e4b37137a, type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.1
+      value: 0.08
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: d67c6fe4b38ad44adb7fad6e4b37137a, type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.1
+      value: 0.08
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: d67c6fe4b38ad44adb7fad6e4b37137a, type: 3}
       propertyPath: m_LocalScale.z
-      value: 0.1
+      value: 0.08
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: d67c6fe4b38ad44adb7fad6e4b37137a, type: 3}
       propertyPath: m_LocalPosition.x
@@ -79,7 +79,7 @@ PrefabInstance:
       addedObject: {fileID: 4010103566141559177}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: d67c6fe4b38ad44adb7fad6e4b37137a, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 3979031791222049336}
+      addedObject: {fileID: -544236132933359326}
   m_SourcePrefab: {fileID: 100100000, guid: d67c6fe4b38ad44adb7fad6e4b37137a, type: 3}
 --- !u!1 &8570460978522251206 stripped
 GameObject:
@@ -128,7 +128,7 @@ SphereCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -147,7 +147,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rigidBody: {fileID: 763370701076247208}
---- !u!114 &3979031791222049336
+--- !u!114 &-544236132933359326
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -156,8 +156,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 8570460978522251206}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b94161ca2c6be43c18b9bcf95cd98ee2, type: 3}
+  m_Script: {fileID: 11500000, guid: 9a3351701c1df4c4eb51a85e1d3205bf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  debrisPrefab: {fileID: 3083111004831871583, guid: abca302bba1944c6ab436b3b163060e6, type: 3}
-  debrisCount: 3
+  rigidBody: {fileID: 763370701076247208}
