@@ -18,9 +18,9 @@ public class AutoDestroy : MonoBehaviour
     private IEnumerator HandleLifetime()
     {
         yield return new WaitForSeconds(Random.Range(minLifetime, maxLifetime));
-        Debug.Log("Fragment instantiated with lifetime between: " + minLifetime + " and " + maxLifetime);
+        // Debug.Log("Fragment instantiated with lifetime between: " + minLifetime + " and " + maxLifetime);
         
-        Debug.Log("Fragment destroyed");
+        // Debug.Log("Fragment destroyed");
         Destroy(gameObject);
     }
 }
