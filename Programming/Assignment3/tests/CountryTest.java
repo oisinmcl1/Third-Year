@@ -1,13 +1,17 @@
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
-/*
-Oisin Mc Laughlin
-22441106
+/**
+ * @author Oisin Mc Laughlin
+ * 22441106
  */
 
 public class CountryTest {
-    // I know very unnecssary but I want to follow tdd strictly
+    /**
+     * Test all countries in the country enum
+     * Check if the country values are equal to the enum values
+     * prob should add more if I remember
+     */
     @Test
     void testAllCountries() {
         // Test country values of country enum
