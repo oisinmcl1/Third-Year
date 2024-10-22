@@ -1,0 +1,20 @@
+# Ignore C/C++ object files and binary outputs
+*.o
+*.out
+*.a
+*.so
+*.dylib
+*.exe
+
+# Ignore build directories (for example, CLion uses cmake-build-debug)
+cmake-build-debug/
+cmake-build-release/
+build/
+
+# Ignore logs, lock files, or temporary files
+*.log
+*.tmp
+
+# Ignore IDE-related files (like CLion)
+.idea/
+
