@@ -16,9 +16,9 @@ int main(void) {
 
     // Use sizeof() to get the size of each variable in bytes
     printf("\n");
-    printf("Size of int: %zu bytes\n", sizeof(typeInt));
-    printf("Size of int*: %zu bytes\n", sizeof(typeIntPointer));
-    printf("Size of long: %zu bytes\n", sizeof(typeLong));
-    printf("Size of double*: %zu bytes\n", sizeof(typeDoublePointer));
-    printf("Size of char**: %zu bytes\n", sizeof(typeCharPointerPointer));
+    printf("Size of int: %ld bytes\n", sizeof(typeInt));
+    printf("Size of int*: %ld bytes\n", sizeof(typeIntPointer));
+    printf("Size of long: %ld bytes\n", sizeof(typeLong));
+    printf("Size of double*: %ld bytes\n", sizeof(typeDoublePointer));
+    printf("Size of char**: %ld bytes\n", sizeof(typeCharPointerPointer));
 }
