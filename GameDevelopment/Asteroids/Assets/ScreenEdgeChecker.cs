@@ -9,6 +9,7 @@ public class ScreenEdgeChecker : MonoBehaviour
     
     void Start()
     {
+        rigidBody = GetComponent<Rigidbody>();
         InvokeRepeating ("CheckScreenEdges", 0.1f, 0.1f);
     }
 

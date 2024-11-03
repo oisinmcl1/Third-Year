@@ -1,0 +1,26 @@
+Assets/TextMesh Pro/
+/UserSettings/Layouts/default-2022.dwlt
+# Ignore Unity-specific settings
+GameDevelopment/Asteroids/ProjectSettings/
+GameDevelopment/Asteroids/UserSettings/
+
+# Ignore all scene files unless you want to keep specific ones
+GameDevelopment/Asteroids/Assets/Scenes/*.unity
+
+# Ignore prefabs
+GameDevelopment/Asteroids/Assets/*.prefab
+
+# Ignore build and temp files
+[Ll]ibrary/
+[Tt]emp/
+[Bb]uild/
+[Oo]bj/
+
+# Unity "fluff" files
+*.prefab
+*.asset
+*.dwlt
+*.unity
+/UserSettings/
+/ProjectSettings/
+

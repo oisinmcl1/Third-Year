@@ -44,7 +44,13 @@ public class Asteroid : MonoBehaviour
             Destroy(collision.gameObject);
             GameManager.instance.CreatePlayerSpaceship();
             Destroy(gameObject);
+            
+            // Reduce lives when hit
+            GameManager.instance.ReduceLife();
         }
+        
+        // Call AsteroidCountCheck function in GameManager
+        GameManager.instance.AsteroidCountCheck();
     }
 
     // Since bullet is a trigger, need to use OnTriggerEnter
@@ -54,7 +60,7 @@ public class Asteroid : MonoBehaviour
         if (other.gameObject.CompareTag("Bullet"))
         {
             // Destroy bullet and asteroid
-            Debug.Log("Bullet hit asteroid");
+            Debug.Log("Destroyed Asteroid (why won't this work)");
             Destroy(other.gameObject);
             Destroy(gameObject);
             
@@ -62,7 +68,19 @@ public class Asteroid : MonoBehaviour
             if (largeAsteroid)
             {
                 smallAsteroidsSpawn();
+                
+                // If large asteroid destroyed, add 5 points to score
+                GameManager.instance.AddScore(5);
             }
+            else
+            {
+                // If small asteroid destroyed, add 10 points to score
+                GameManager.instance.AddScore(10);
+            }
+            
+            // Call AsteroidCountCheck function in GameManager
+            Debug.Log("Calling aCountCheck from Asteroid.cs");
+            GameManager.instance.AsteroidCountCheck();
         }
     }
 
@@ -80,6 +98,12 @@ public class Asteroid : MonoBehaviour
             
             // Add velocity to small asteroid in random direction
             smallAsteroid.GetComponent<Rigidbody>().velocity = new Vector3(Random.Range(-10f, 10f), 0f, Random.Range(-10f, 10f));
+            
+            // Ensure it has Asteroid tag as well
+            smallAsteroid.tag = "Asteroid";
+            
+            // I honestly didn't realise they didn't wrap screen so
+            smallAsteroid.AddComponent<ScreenEdgeChecker>();
         }
     }
 }
