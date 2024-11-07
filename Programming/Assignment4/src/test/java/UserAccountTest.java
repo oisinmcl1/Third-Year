@@ -1,13 +1,8 @@
 import org.example.UserAccount;
 import org.junit.jupiter.api.Test;
-
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Scanner;
-
+import java.util.*;
 import static org.junit.jupiter.api.Assertions.*;
 
 /**
@@ -271,5 +266,154 @@ public class UserAccountTest {
 
         // EDGE CASE!
 //        assertNotEquals(u3.hashCode(), u3.hashCode());
+    }
+
+    /**
+     * Test sort and search
+     * This class covers part f, 1-4
+     *
+     * Populates list of users
+     * 1. Sorts list by natural order (email address)
+     * 2. Sorts list by userID in ascending order using anonymous inner class
+     * 3. Sorts list by name in descending alphabetical order using lambda expression
+     * 4. Performs binary search on list sorted by natural order on emailAddress
+     *
+     * @asserts all that but i dont wanna write it all out again ^
+     */
+    @Test
+    void testUserSortSearch() {
+        // Create user arraylist and populate
+        List<UserAccount> users = new ArrayList<>();
+
+        users.add(
+                new UserAccount(
+                        123,
+                        "Michael Scott",
+                        "michael@dundermifflin.com"
+                )
+        );
+        users.add(
+                new UserAccount(
+                        456,
+                        "Dwight Schrute",
+                        "dwight@dundermifflin.com"
+                )
+        );
+        users.add(
+                new UserAccount(
+                        789,
+                        "Jim Halpert",
+                        "jim@dundermifflin.com"
+                )
+        );
+        users.add(
+                new UserAccount(
+                        101,
+                        "Pam Beesly",
+                        "pam@dundermifflin.com"
+                )
+        );
+
+        // Print each before sorting
+//        for (UserAccount u : users) {
+//            System.out.println(u);
+//        }
+
+        // Before sorting first should be michael and last should be pam (order added)
+        assertEquals("Michael Scott", users.get(0).getName());
+        assertEquals("Pam Beesly", users.get(3).getName());
+
+        // Sort the list
+        Collections.sort(users);
+
+        // Print each after sorting
+        /*for (UserAccount u: users) {
+            System.out.println(u);
+        }*/
+
+        // After sorting first should be dwight and last should be michael (order of email address)
+        assertEquals("Dwight Schrute", users.get(0).getName());
+        assertEquals("Pam Beesly", users.get(3).getName());
+
+
+        // Using anonymous inner class to sort by userID in ascending order
+        System.out.println("Sorting by userID in ascending order");
+        Collections.sort(users, new Comparator<UserAccount>() {
+            @Override
+            public int compare(UserAccount u1, UserAccount u2) {
+                if (u1.getUserID() > u2.getUserID()) {
+                    return 1;
+                } else if (u1.getUserID() < u2.getUserID()) {
+                    return -1;
+                } else {
+                    return 0;
+                }
+            }
+        });
+
+        // In order:
+        // pam, michael, dwight, jim
+        // 101, 123, 456, 789
+
+        // After sorting by userID first should be pam and last should be jim
+        assertEquals(101, users.get(0).getUserID());
+        assertEquals(789, users.get(3).getUserID());
+
+        // Print asc
+        for (UserAccount u : users) {
+            System.out.println(u);
+        }
+
+
+        // Now using lambda to sort names in descending alphabetical order
+        System.out.println("\n\nSorting by name in descending alphabetical order");
+        Collections.sort(
+                users, (u1, u2) ->
+                        u2.getName().
+                                compareTo(
+                                        u1.getName()
+                                )
+        );
+
+        // dwight, jim, michael, pam
+        // pam, michael, jim, dwight
+
+        // in decending alphabetical order first should be pam and last should be dwight if i can do my abc's
+        assertEquals("Pam Beesly", users.get(0).getName());
+        assertEquals("Dwight Schrute", users.get(3).getName());
+
+        // Print desc
+        for (UserAccount u : users) {
+            System.out.println(u);
+        }
+
+
+        // Perform binary search on list soprted by natrual order on emailAddress
+        UserAccount key = new UserAccount(
+                420,
+                "Oisín",
+                "o.mclaughlin2@universityofgalway.ie"
+        );
+        users.add(key);
+        // Sort by natrual order again (by email)
+        Collections.sort(users);
+
+        /*System.out.println("\n\n\nNatural order before search");
+        for (UserAccount u : users) {
+            System.out.println(u);
+        }*/
+
+        // Perform binary search
+        int pos = Collections.binarySearch(users, key);
+
+        // if target found index will be >= 0
+        if (pos >= 0) {
+            System.out.println("Found at index: " + pos);
+        } else {
+            System.out.println("Not found");
+        }
+
+        // In natural order, myself should be at index 3
+        assertEquals(3, pos);
     }
 }

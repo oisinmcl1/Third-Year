@@ -103,13 +103,12 @@ public class UserAccount implements Comparable<UserAccount> {
 
     /**
      * HashCode method for UserAccount
-     * name and emailAddress are hashed and added to userID
-     * Multiply by 13 to get a unique hashcode
+     * name and emailAddress are hashed and added to userID (used built in hash code method that returns an int by hashing based on the chars)
+     * Multiply by 13 to add more uniqueness to the hashcode
      * @return hashcode based on userID, name, emailAddress (added together and multiplied by 13)
      */
     @Override
     public int hashCode() {
-        // Multiply by 13 to get a unique hashcode
         return 13 * ((int) (userID + name.hashCode() + emailAddress.hashCode()));
     }
 }
