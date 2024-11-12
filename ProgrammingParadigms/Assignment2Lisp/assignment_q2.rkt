@@ -3,8 +3,6 @@
 ; Question 2
 ; Oisin Mc Laughlin - 22441106
 
-; Part A
-
 (provide ins_beg)
 (provide ins_end)
 (provide cout_top_level)
@@ -102,7 +100,7 @@
 (display "\n\n")
 
 
-; Counts number of times that item occurs in list including sub lists of items
+; F - Counts number of times that item occurs in list including sub lists of items
 (define (count_instances_deep item lst)
   (cond
     ; you know the craic by this stage
