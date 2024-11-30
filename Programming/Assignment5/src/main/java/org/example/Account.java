@@ -50,6 +50,11 @@ public class Account implements Serializable {
 			balance.plus(amount);
 		}
 	}
+//	public void makeDeposit(Money amount) throws NegativeBalanceException {
+//		if(amount.isGreaterThan(Money.of(CurrencyUnit.EUR, 0)) ) {
+//			setBalance(balance.plus(amount));
+//		}
+//	}
 
 	/**
 	 * Make a withdrawal from the account of the given amount

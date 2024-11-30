@@ -1,5 +1,12 @@
+/*
+I hope everything is there, I had to restore from a backup this morning (assignment due day)
+I have a uni match today so I can't spend anymore time debugging - I'd love to know why it's not working
+ */
+
 package org.example;
+
 import org.example.exceptions.InsufficientFundsException;
+import org.example.exceptions.NegativeBalanceException;
 import org.joda.money.CurrencyUnit;
 import org.joda.money.Money;
 
@@ -7,6 +14,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.TimeUnit;
 
@@ -19,6 +27,7 @@ public class Bank {
     private Map<Integer, Account> accounts;
     private LinkedBlockingQueue<Transaction> transactions;
     private ExecutorService tp;
+    private volatile boolean running;
 
     /**
      * Constructor for Bank class
@@ -27,6 +36,7 @@ public class Bank {
     public Bank() {
         accounts = new HashMap<>();
         transactions = new LinkedBlockingQueue<>();
+        tp = Executors.newFixedThreadPool(2);
     }
 
     /**
@@ -61,6 +71,9 @@ public class Bank {
      */
     public void submitTransaction(Transaction t) {
         transactions.add(t);
+
+//        System.out.println(transactions.toString());
+//        System.out.println(transactions.size());
     }
 
     /**
@@ -74,7 +87,7 @@ public class Bank {
                             a.getAccountNumber() +
                             " has a balance of " +
                             a.getBalance()
-                    );
+            );
         }
     }
 
@@ -92,20 +105,25 @@ public class Bank {
     /**
      * Method to start two AutomatedBankClerk threads using thread pool ExecutorService
      * Submits AutomatedBankClerk objects to ExecutorService
-     *
+     * Sets running to true
+     * Sets running to true
+     * <p>
      * Clerk 1 and Clerk 2 are created and submitted to the ExecutorService
      */
     public void openBank() {
-        AutomatedBankClerk c1 = new AutomatedBankClerk("C1");
-        AutomatedBankClerk c2 = new AutomatedBankClerk("C2");
+        AutomatedBankClerk c1 = new AutomatedBankClerk("TPT1");
+        AutomatedBankClerk c2 = new AutomatedBankClerk("TPT2");
 
         tp.submit(c1);
         tp.submit(c2);
+
+        running = true;
     }
 
     /**
      * Method to close the bank by stopping two AutomatedBankClerk threads using thread pool
      * This waits for threads to finish terminating or for 10 seconds before returning
+     * Sets running to false
      *
      * @throws InterruptedException if thread is interrupted
      */
@@ -117,13 +135,23 @@ public class Bank {
             if (!tp.awaitTermination(10, TimeUnit.SECONDS)) {
                 tp.shutdownNow();
             }
-        }
-        catch (InterruptedException e) {
+
+            // set running to false
+            running = false;
+        } catch (InterruptedException e) {
             // if any exception occurs, stop thread
             Thread.currentThread().interrupt();
         }
     }
 
+    /**
+     * Getter for running
+     *
+     * @return running
+     */
+    public boolean getRunning() {
+        return running;
+    }
 
     // AutomatedBankClerk innerclass
     private class AutomatedBankClerk implements Runnable {
@@ -133,74 +161,98 @@ public class Bank {
         private int dCount;
         private int wCount;
 
+        /**
+         * Constructor for AutomatedBankClerk
+         * Initialises name, deposit count and withdrawal count
+         *
+         * @param name of clerk
+         */
         public AutomatedBankClerk(String name) {
             this.name = name;
             this.dCount = 0;
             this.wCount = 0;
         }
 
+        /**
+         * Run method for AutomatedBankClerk
+         * While there are transactions in the queue, process them
+         * If transaction is null, break
+         * Get account associated with transaction
+         * Allow 1 thread to access account at a time
+         * If account not null, make deposit if amount is greater than 0
+         * Otherwise make withdrawal
+         * Sleep for random time between 0 and 1 sec
+         *
+         * @throws InterruptedException       if thread is interrupted
+         * @throws InsufficientFundsException if insufficient funds for withdrawal
+         */
         @Override
         public void run() {
             try {
-                while (true) {
+                while (!transactions.isEmpty() || running) {
                     // Wait 5 seconds for a transaction to be available
                     Transaction t = transactions.poll(5, TimeUnit.SECONDS);
+                    System.out.println("TRANSAC: " + t);
 
                     if (t == null) {
                         break;
                     }
+                    System.out.println("\n\nHERE 2\n\n");
 
                     // Het account associated with transaction
                     Account a = getAccById(t.getAccountNumber());
+                    System.out.println(a);
 
-                    // Allow 1 thread to access account at a time
-                    synchronized (a) {
-                        // If account not null make deposit
-                        if (a != null) {
-                            // Make deposit if amount is greater than 0
-                            if (t.getAmount() > 0) {
-                                a.makeDeposit(Money.of(CurrencyUnit.EUR, t.getAmount()));
-                                System.out.println(
-                                        name +
-                                                " processed a deposit of " +
-                                                t.getAmount() +
-                                                " to account " +
-                                                t.getAccountNumber()
-                                );
-                                dCount++;
-                            }
-                            // Othersie make withdrawal
-                            else {
-                                try {
-                                    a.makeWithdrawal(Money.of(CurrencyUnit.EUR, t.getAmount()));
+                    if (a != null) {
+                        // Allow 1 thread to access account at a time
+                        synchronized (a) {
+                            System.out.println("\n\nHERE\n\n");
+                            // If account not null make deposit
+                            if (a != null) {
+                                // Make deposit if amount is greater than 0
+                                if (t.getAmount() > 0) {
+                                    System.out.println("depositttttttttt");
+                                    a.makeDeposit(Money.of(CurrencyUnit.EUR, t.getAmount()));
                                     System.out.println(
                                             name +
-                                                    " processed a withdrawal of " +
+                                                    " processed a deposit of " +
                                                     t.getAmount() +
-                                                    " from account " +
+                                                    " to account " +
                                                     t.getAccountNumber()
                                     );
-                                    wCount++;
+                                    dCount++;
                                 }
-                                catch (InsufficientFundsException e) {
-                                    // Cancel transaction if insufficient funds
-                                    System.out.println("Insufficient funds for withdrawal");
+                                // Otherwise make withdrawal
+                                else {
+                                    try {
+                                        System.out.println("withdrawwwwwwwwwww");
+                                        a.makeWithdrawal(Money.of(CurrencyUnit.EUR, t.getAmount()));
+                                        System.out.println(
+                                                name +
+                                                        " processed a withdrawal of " +
+                                                        t.getAmount() +
+                                                        " from account " +
+                                                        t.getAccountNumber()
+                                        );
+                                        System.out.println("Withdrawal: " + t.getAmount());
+                                        wCount++;
+                                    } catch (InsufficientFundsException e) {
+                                        // Cancel transaction if insufficient funds
+                                        System.out.println("Insufficient funds for withdrawal");
+                                    }
                                 }
                             }
                         }
+                        // Sleep for random time between 0 and 1 sec
+                        Thread.sleep(
+                                (long) (Math.random() * 1000)
+                        );
                     }
-                    // Sleep for random time between 0 and 1 sec
-                    Thread.sleep(
-                            (int) (Math.random() * 1000)
-                    );
                 }
-            }
-
-            catch (InterruptedException e) {
+            } catch (InterruptedException e) {
                 // If thread interrupted, stop thread
                 Thread.currentThread().interrupt();
             }
-
             finally {
                 // Print clerk name and number of deposits and withdrawals processed
                 System.out.println(
